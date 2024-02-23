@@ -14,6 +14,9 @@ use App\Http\Controllers\Api\PaymentController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::get('hello-world', function () {
+    return response()->json(['data' => 'hello world']);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
