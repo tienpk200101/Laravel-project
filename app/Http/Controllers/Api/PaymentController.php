@@ -74,25 +74,25 @@ class PaymentController extends Controller
         return response()->json(['payment_intent' => $paymentIntent]);
     }
 
-//    public function StripeWebHook(Request $request)
-//    {
-//        $payload = json_decode($request->getContent(), true);
-//
-//        //Kiểm tra xác thực webhook bằng chữ ký
-//        $secret = '';
-//        $headerSignature = $request->header('Stripe-Signature');
-//
-//        try {
-//            $event = Webhook::constructEvent(
-//                $request->getContent(),
-//                $headerSignature,
-//                $secret
-//            );
-//
-//            if($event->type == 'payment_intent.succeeded') {
-//
-//            }
-//        } catch () {
-//        }
-//    }
+    public function StripeWebHook(Request $request)
+    {
+        $payload = json_decode($request->getContent(), true);
+
+        //Kiểm tra xác thực webhook bằng chữ ký
+        $secret = '';
+        $headerSignature = $request->header('Stripe-Signature');
+
+        try {
+            $event = Webhook::constructEvent(
+                $request->getContent(),
+                $headerSignature,
+                $secret
+            );
+
+            if($event->type == 'payment_intent.succeeded') {
+
+            }
+        } catch () {
+        }
+    }
 }
